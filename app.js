@@ -109,8 +109,8 @@ function provinceTimer(length, startTime) {
 function cityTimer(length, startTime) {
     ep.after('city_success_done', length, (counts) => {
         let endTime = new Date().getTime();
-        console.log(`市级数据所用时：${endTime - startTime}ms`);
         console.log('更新执行完毕', JSON.stringify(counts));
+        console.log(`市级数据所用时：${endTime - startTime}ms`);
         district();
         // connect.connection.end();
     });
@@ -118,8 +118,8 @@ function cityTimer(length, startTime) {
 function distinctTimer(length, startTime) {
     ep.after('distinct_success_done', length, (counts) => {
         let endTime = new Date().getTime();
-        console.log(`区县级数据所用时：${endTime - startTime}ms`);
         console.log('更新执行完毕', JSON.stringify(counts));
+        console.log(`区县级数据所用时：${endTime - startTime}ms`);
         street();
         // connect.connection.end();
     });
@@ -127,8 +127,8 @@ function distinctTimer(length, startTime) {
 function streetTimer(length, startTime) {
     ep.after('street_success_done', length, (counts) => {
         let endTime = new Date().getTime();
+        console.log('更新执行完毕', counts.length);
         console.log(`街道级数据所用时：${endTime - startTime}ms`);
-        console.log('更新执行完毕', JSON.stringify(counts));
         connect.connection.end();
     });
 }
