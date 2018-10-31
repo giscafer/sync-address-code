@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { dataToTree } from './dataToTree';
@@ -8,15 +9,16 @@ import { dataToTree } from './dataToTree';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '全国省市县街道4级数据';
+  title = '全国省市县街道4级数据展示（来自高德）';
   loading = false;
   filesTreeData = [];
+  selectedFiles2 = [];
   selectedFiles = [];
   constructor(private http: HttpClient) {
 
   }
   ngOnInit() {
-    
+
     this.load();
   }
 
@@ -27,5 +29,12 @@ export class AppComponent implements OnInit {
       this.filesTreeData = tree;
       this.loading = false;
     })
+  }
+  selectionChange($event) {
+    console.log($event)
+    let node = cloneDeep($event);
+    delete node.children;
+    delete node.parent;
+    this.selectedFiles = node;
   }
 }
