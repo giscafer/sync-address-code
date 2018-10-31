@@ -22,4 +22,40 @@ CREATE TABLE `earea_` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='五级区域表';
 
 
-INSERT INTO earea_ (id_, date_created_, disabled_, last_updated_, version_, code_, lat_, level_, lng_, merger_name_, name_, pinyin_, short_name_, tel_code_, zip_code_, parent_id_) VALUES ('0xxxxxxxxxxxxxxx', '2017-04-23 04:17:29', 0, '2017-04-23 04:17:29', 0, '000000000000', 39.90, -1, 116.41, '中国', '中国', 'Zhongguo', '中国', '+86', '000000', '0xxxxxxxxxxxxxxx');
+INSERT INTO earea_ (
+	id_,
+	date_created_,
+	disabled_,
+	last_updated_,
+	version_,
+	code_,
+	lat_,
+	level_,
+	lng_,
+	merger_name_,
+	name_,
+	pinyin_,
+	short_name_,
+	tel_code_,
+	zip_code_,
+	parent_id_
+)
+VALUES
+	(
+		'000000000000',
+		'2017-04-23 04:17:29',
+		0,
+		'2017-04-23 04:17:29',
+		0,
+		'000000000000',
+		39.90,
+		- 1,
+		116.41,
+		'中国',
+		'中国',
+		'Zhongguo',
+		'中国',
+		'+86',
+		'000000',
+		NULL
+	);

@@ -20,6 +20,14 @@ sync address code from AMap
 
 每次脚本执行后，sql文件会更新，`./sql/gaode_address_code.sql` 为省市区县 街道4级数据，`gaode_address_code.xlsx` 为excel格式省市区县街道数据
 
+## Issues
+
+- 高德地图4级地址的adcode和区县一样，所以4级地址程序自动编码了；
+- 存在部分市的code和正常的规律不一样见 `sql/samedistrictCodeCityNames.json` 文件中；
+
+
+脚本根据code生成id,主键约束，这样能在入库的时候就知道什么政区的数据存在不规律的情况。
+
 
 ## Related
 

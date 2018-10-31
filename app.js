@@ -6,6 +6,7 @@ const EventProxy = require('eventproxy');
 
 const ep = new EventProxy();
 
+const debug = false;
 
 /* 省数据写入 */
 function province() {
@@ -16,12 +17,16 @@ function province() {
         provinceTimer(data.length, startTime);
         let count = 0;
         for (let sql of data) {
-            connect.connection.query(sql, (err, rows, fields) => {
-                if (err) throw err;
-                count++;
-                console.log(count);
+            if (debug) {
                 ep.fire('province_success_done', count);
-            });
+            } else {
+                connect.connection.query(sql, (err, rows, fields) => {
+                    if (err) throw err;
+                    count++;
+                    console.log(count);
+                    ep.fire('province_success_done', count);
+                });
+            }
         }
     })
 }
@@ -38,12 +43,17 @@ function city() {
         cityTimer(data.length, startTime);
         let count = 0;
         for (let sql of data) {
-            connect.connection.query(sql, (err, rows, fields) => {
-                if (err) throw err;
-                count++;
-                console.log(count);
+            if (debug) {
                 ep.fire('city_success_done', count);
-            });
+            } else {
+                connect.connection.query(sql, (err, rows, fields) => {
+                    if (err) throw err;
+                    count++;
+                    console.log(count);
+                    ep.fire('city_success_done', count);
+                });
+            }
+
         }
     })
 }
@@ -58,12 +68,16 @@ function district() {
         distinctTimer(data.length, startTime);
         let count = 0;
         for (let sql of data) {
-            connect.connection.query(sql, (err, rows, fields) => {
-                if (err) throw err;
-                count++;
-                console.log(count);
+            if (debug) {
                 ep.fire('distinct_success_done', count);
-            });
+            } else {
+                connect.connection.query(sql, (err, rows, fields) => {
+                    if (err) throw err;
+                    count++;
+                    console.log(count);
+                    ep.fire('distinct_success_done', count);
+                });
+            }
         }
     })
 }
@@ -78,18 +92,23 @@ function street() {
         streetTimer(data.length, startTime);
         let count = 0;
         for (let sql of data) {
-            connect.connection.query(sql, (err, rows, fields) => {
-                if (err) throw err;
-                count++;
-                console.log(count);
+            if (debug) {
                 ep.fire('street_success_done', count);
-            });
+            } else {
+                connect.connection.query(sql, (err, rows, fields) => {
+                    if (err) throw err;
+                    count++;
+                    console.log(count);
+                    ep.fire('street_success_done', count);
+                });
+            }
         }
     })
 }
 
 
-province();
+// province();
+street();
 
 
 

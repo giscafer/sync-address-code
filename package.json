@@ -4,7 +4,8 @@
   "description": "sync address code from AMap",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --max_old_space_size=5120 app"
   },
   "repository": {
     "type": "git",
