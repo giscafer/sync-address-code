@@ -6,5 +6,5 @@ module.exports = {
     user: 'root',
     password: 'laohoubin',
     database: 'address',
-    tableName: 'gaode_address_code' //gaode_address_code
+    tableName: 'earea_' //gaode_address_code
 };

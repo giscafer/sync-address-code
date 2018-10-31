@@ -77,7 +77,7 @@ function street() {
         fs.writeFileSync('./sql/street.sql', data.join('\n'));
         streetTimer(data.length, startTime);
         let count = 0;
-       for (let sql of data) {
+        for (let sql of data) {
             connect.connection.query(sql, (err, rows, fields) => {
                 if (err) throw err;
                 count++;
@@ -90,9 +90,7 @@ function street() {
 
 
 province();
-// city();
-// district();
-// street();
+
 
 
 function provinceTimer(length, startTime) {
@@ -100,7 +98,6 @@ function provinceTimer(length, startTime) {
         let endTime = new Date().getTime();
         console.log(`省级所用时：${endTime - startTime}ms`);
         console.log('更新执行完毕', JSON.stringify(counts));
-
         city();
         // connect.connection.end();
     });
@@ -109,7 +106,7 @@ function provinceTimer(length, startTime) {
 function cityTimer(length, startTime) {
     ep.after('city_success_done', length, (counts) => {
         let endTime = new Date().getTime();
-        console.log('更新执行完毕', JSON.stringify(counts));
+        console.log('更新执行完毕', counts.length);
         console.log(`市级数据所用时：${endTime - startTime}ms`);
         district();
         // connect.connection.end();
@@ -118,7 +115,7 @@ function cityTimer(length, startTime) {
 function distinctTimer(length, startTime) {
     ep.after('distinct_success_done', length, (counts) => {
         let endTime = new Date().getTime();
-        console.log('更新执行完毕', JSON.stringify(counts));
+        console.log('更新执行完毕', counts.length);
         console.log(`区县级数据所用时：${endTime - startTime}ms`);
         street();
         // connect.connection.end();
