@@ -4,6 +4,7 @@ const fs = require('fs');
 const tableName = require('../db/config').tableName;
 const _ = require('lodash');
 const duplicates = require('./duplicates');
+const questionCity = require('./question-city');
 
 const map_key_test = '26f843db0f8f4ba4e2a5d6e69671ee6a';
 
@@ -27,6 +28,10 @@ const level = {
     'district': 2,
     'street': 3,
 };
+
+let sameCodeCity = questionCity.sameCodeCity;
+
+
 // 12位code
 const genCodeId = (adcode) => {
     return adcode + Array((12 - adcode.length)).fill('x').join('');
@@ -150,6 +155,9 @@ function streetDataHandler(citys, provinceName) {
             // 街道
             let mergerName = `${provinceName}/${city.name}/${dist.name}`;
             let parentId = genCodeId(dist.adcode);
+            if (questionCity.districtsNames.includes(dist.name)) {
+                parentId = questionCity.districtsIds[dist.name];
+            }
             let count = 100; // 用来区分街道和区县code
             for (const street of dist.districts) {
                 count--;
@@ -194,7 +202,6 @@ function crawlerCityData() {
     });
 }
 /* 区县 */
-let sameCodeCity = ["中山市", "济源市", "东莞市", "北屯市", "双河市", "铁门关市", "昆玉市", "可克达拉市", "石河子市", "五家渠市", "阿拉尔市", "图木舒克市", "天门市", "潜江市", "仙桃市", "神农架林区", "屯昌县", "琼海市", "昌江黎族自治县", "定安县", "琼中黎族苗族自治县", "临高县", "东方市", "白沙黎族自治县", "文昌市", "五指山市", "保亭黎族苗族自治县", "澄迈县", "陵水黎族自治县", "万宁市", "乐东黎族自治县", "儋州市", "嘉峪关市"]; // code和县区一样的市'东莞市', 
 let districtIds = [];
 const _districtIds = ["659005xxxxxx", "659001xxxxxx", "659002xxxxxx", "659003xxxxxx", "659007xxxxxx", "659004xxxxxx", "659006xxxxxx", "659009xxxxxx", "659008xxxxxx", "659010xxxxxx", "429006xxxxxx", "429001xxxxxx", "429002xxxxxx", "429003xxxxxx", "429004xxxxxx", "429005xxxxxx", "429007xxxxxx", "429008xxxxxx", "429009xxxxxx", "429010xxxxxx", "429011xxxxxx", "429012xxxxxx", "429013xxxxxx", "429014xxxxxx", "429015xxxxxx", "429016xxxxxx", "429017xxxxxx", "429018xxxxxx", "429019xxxxxx", "429020xxxxxx", "429021xxxxxx", "429022xxxxxx", "429023xxxxxx", "429024xxxxxx", "469001xxxxxx", "469002xxxxxx", "469003xxxxxx", "469004xxxxxx", "469005xxxxxx", "469006xxxxxx", "469007xxxxxx", "469008xxxxxx", "469009xxxxxx", "469010xxxxxx", "469011xxxxxx", "469012xxxxxx", "469013xxxxxx", "469014xxxxxx", "469015xxxxxx", "469016xxxxxx"];
 function crawlerDistrictData() {
