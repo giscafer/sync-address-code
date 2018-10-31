@@ -3,6 +3,8 @@ sync address code from AMap
 
 ## 使用说明
 
+含父子关系的政区数据脚本见分支 [zq-tree](https://github.com/giscafer/sync-address-code/tree/zq-tree)
+
 源码目录说明
 
 - db 为链接mysql数据库配置
